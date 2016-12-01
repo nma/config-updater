@@ -1,6 +1,10 @@
 import unittest
+import ansible
 
 
 class TestAnsibleIntegration(unittest.TestCase):
-    def __init__(self):
+    def setUp(self):
         pass
+
+    def test_hello(self):
+        self.assertTrue(True)
