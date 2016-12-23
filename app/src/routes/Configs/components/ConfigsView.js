@@ -1,11 +1,15 @@
-import * as React from "react";
+import * as React from 'react'
 
-import { Intent } from "@blueprintjs/core";
+export default class TableEditableExample extends React.Component {
+  constructor (props) {
+    super(props)
+  }
 
-import { Column, ColumnHeaderCell, EditableCell, EditableName, Table } from "@blueprintjs/core";
-
-export default class TableEditableExample {
-    constructor(props) {
-        super(props)
-    }   
+  render () {
+    return (
+            <div >
+            {" poop "}
+            </div>
+        )
+  }
 }
