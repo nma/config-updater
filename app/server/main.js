@@ -4,7 +4,6 @@ const webpack = require('webpack')
 const webpackConfig = require('../build/webpack.config')
 const config = require('../config')
 const compress = require('compression')
-const ShareDB = require('sharedb')
 
 const app = express()
 const paths = config.utils_paths
@@ -53,41 +52,6 @@ if (config.env === 'development') {
   // the web server and not the app server, but this helps to demo the
   // server in production.
   app.use(express.static(paths.dist()))
-}
-
-// var mongo_path = 'mongodb://localhost:27017/test'
-// const db = require('sharedb-mongo')(mongo_path);
-// const backend = new ShareDB({db});
-
-function startSocketsServer (port) {
-  var http = require('http')
-  var server = http.createServer(app)
-
-  // Connect any incoming WebSocket connection to ShareDB
-  var wss = new WebSocket.Server({ server: server })
-  wss.on('connection', function (ws, req) {
-    var stream = new WebSocketJSONStream(ws)
-    backend.listen(stream)
-  })
-
-  server.listen(port)
-}
-
-function startDoc (port) {
-  var WebSocket = require('ws')
-  var WebSocketJSONStream = require('websocket-json-stream')
-
-  const backend = new ShareDB()
-  var connection = backend.connect()
-  var doc = connection.get('config', 'host')
-  doc.fetch(function (err) {
-    if (err) throw err
-    if (doc.type === null) {
-      doc.create({ numClicks: 0 }, callback)
-      return
-    }
-    startSocketsServer(port)
-  })
 }
 
 module.exports = app
