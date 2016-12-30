@@ -19,6 +19,7 @@
     "deploy": "better-npm-run deploy",
     "deploy:dev": "better-npm-run deploy:dev",
     "deploy:prod": "better-npm-run deploy:prod",
+    "wp:dev": "node_modules/webpack-dev-server/bin/webpack-dev-server.js --host 0.0.0.0 --devtool eval --hot --progress --colors --content-base build --config build/webpack.config.js",
     "codecov": "cat coverage/*/lcov.info | codecov"
   },
   "betterScripts": {
