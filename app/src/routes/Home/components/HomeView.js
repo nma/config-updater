@@ -1,5 +1,9 @@
 import React from 'react'
 import { LayoutContainer, LayoutRow, LayoutColumn } from 'cf-component-layout'
+import {
+  ButtonGroup,
+  Button
+} from 'cf-component-button'
 import './HomeView.scss'
 import AceEditor from 'react-ace'
 import request from 'superagent'
@@ -30,6 +34,7 @@ export class HomeView extends React.Component {
   onChange (newValue) {
     console.log(`You have typed in ${this.refs.code.editor.container.firstChild.nodeValue}`)
     console.log(`New value is ${newValue}`)
+    this.setState({ editorBody: newValue})
   }
 
   componentWillMount () {
@@ -45,11 +50,20 @@ export class HomeView extends React.Component {
   componentDidMount () {
     const that = this
     console.log('trying to mount the object')
-    this.doc.subscribe(function (err) {
+    // this.doc.subscribe(function (err) {
+    //   if (err) throw err
+    //   var element = that.refs.code.editor.container.firstChild
+    //   var binding = new StringBinding(element, that.doc)
+    //   binding.setup()
+    // })
+  }
+
+  handleButtonSaveClick () {
+    request.put('/config')
+    .send({ textBody: this.state.editorBody })
+    .end(function(err, res) {
       if (err) throw err
-      var element = that.refs.code.editor.container.firstChild
-      var binding = new StringBinding(element, that.doc)
-      binding.setup()
+      console.log('request to update config returned 200.')
     })
   }
 
@@ -68,7 +82,11 @@ export class HomeView extends React.Component {
             value={this.state.editorBody} />
           </LayoutRow>
           <LayoutRow>
-            
+            <ButtonGroup>
+              <Button type="primary" onClick={this.handleButtonSaveClick.bind(this)}>
+                Save
+              </Button>
+            </ButtonGroup>
           </LayoutRow>
         </LayoutContainer>
     )

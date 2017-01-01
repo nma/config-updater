@@ -8,6 +8,7 @@ const port = config.server_port
 var http = require('http')
 var express = require('express')
 var WebSocket = require('ws')
+var _ = require('lodash')
 var WebSocketJSONStream = require('websocket-json-stream')
 var mongo_path = 'mongodb://localhost:27017/cfgs'
 const db = require('sharedb-mongo')(mongo_path)
@@ -20,6 +21,8 @@ startDoc(startSocketsServer)
 
 function startSocketsServer () {
   app = express()
+  var bodyParser = require('body-parser');
+  app.use(bodyParser.json());
   app.get('/config', function (req, res, next) {
     console.log('GETTING CONFIG')
     var config = fs.readFile('./public/test.cfg', 'utf-8', (err, data) => {
@@ -27,6 +30,21 @@ function startSocketsServer () {
       res.send(data)
     })
   })
+
+  app.put('/config', function (req, res, next) {
+    console.log('Updating Config')
+    console.log(req.body)
+
+    if (!_.isNil(req.body) && _.hasIn(req.body, 'textBody')) {
+      console.log('trying to write to config file')
+      fs.writeFile('./public/test.cfg', req.body.textBody, 0, 'utf-8', (err, written, string) => {
+        if (err) throw err
+        res.sendStatus(200)
+      });
+    } else {
+      res.sendStatus(400)
+    }
+  });
 
   app.get('/', function (req, res, next) {
     scripts = `
