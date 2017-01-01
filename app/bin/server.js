@@ -30,9 +30,9 @@ function startSocketsServer () {
 
   app.get('/', function (req, res, next) {
     scripts = `
-          <script src="http://localhost:8080/webpack-dev-server.js"></script>
-          <script src="http://localhost:8080/vendor.js"></script>
-          <script src="http://localhost:8080/app.js"></script>
+          <script src="http://localhost:8888/webpack-dev-server.js"></script>
+          <script src="http://localhost:8888/vendor.js"></script>
+          <script src="http://localhost:8888/app.js"></script>
         `
     var html = `
             <!doctype html>

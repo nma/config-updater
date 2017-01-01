@@ -67,6 +67,9 @@ export class HomeView extends React.Component {
             editorProps={{ $blockScrolling: true }}
             value={this.state.editorBody} />
           </LayoutRow>
+          <LayoutRow>
+            
+          </LayoutRow>
         </LayoutContainer>
     )
   }
