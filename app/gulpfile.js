@@ -1,12 +1,14 @@
-const exec = require('child_process').exec;
 const gulp = require('gulp');
+var run = require('gulp-run');
 
 gulp.task('server', function() {
-    exec('npm start');
+    //run('npm start').pipe(gulp.dest('output'));
+    run('npm start').exec();
 });
 
 gulp.task('wp:dev', function() {
-    exec('npm run wp:dev');
+    //run('npm run wp:dev').pipe(gulp.dest('output'));
+    run('npm run wp:dev').exec();
 });
 
 gulp.task('dev', ['wp:dev', 'server']);
