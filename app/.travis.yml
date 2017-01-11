@@ -1,18 +1,13 @@
-sudo: false
 language: node_js
-node_js:
-  - "6"
 
-cache:
-  directories:
-    - node_modules
+node_js:
+  - stable
 
 install:
   - npm install
 
 script:
-  - npm run deploy:dev
-  - npm run deploy:prod
+  - npm run test
 
-after_success:
-  - npm run codecov
+# Send coverage data to Coveralls
+after_script: "cat coverage/lcov.info | node_modules/coveralls/bin/coveralls.js"

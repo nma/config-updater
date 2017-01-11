@@ -1,223 +1,156 @@
-# React Redux Starter Kit
+## feathers-starter-react-redux-login-roles
+Production ready starter package.
+Local auth, roles; React-Router auth.
+Easily use Feathers services with Redux.
 
-[![Join the chat at https://gitter.im/davezuko/react-redux-starter-kit](https://badges.gitter.im/Join%20Chat.svg)](https://gitter.im/davezuko/react-redux-starter-kit?utm_source=badge&utm_medium=badge&utm_campaign=pr-badge&utm_content=badge)
-[![Build Status](https://travis-ci.org/davezuko/react-redux-starter-kit.svg?branch=master)](https://travis-ci.org/davezuko/react-redux-starter-kit?branch=master)
-[![dependencies](https://david-dm.org/davezuko/react-redux-starter-kit.svg)](https://david-dm.org/davezuko/react-redux-starter-kit)
-[![devDependency Status](https://david-dm.org/davezuko/react-redux-starter-kit/dev-status.svg)](https://david-dm.org/davezuko/react-redux-starter-kit#info=devDependencies)
-[![js-standard-style](https://img.shields.io/badge/code%20style-standard-brightgreen.svg)](http://standardjs.com/)
+> The goal is to support a 100% integration of Feathers and Redux,
+within production quality boilerplate,
+so you can focus on your app development.
+A local auth UI is provided for use,
+and as a working example of Feathers + Redux integration.
 
-This starter kit is designed to get you up and running with a bunch of awesome new front-end technologies, all on top of a configurable, feature-rich webpack build system that's already setup to provide hot reloading, CSS preprocessing with Sass, unit testing, code coverage reports, bundle splitting, and more.
+## <a name="features"></a> Requirements
 
-The primary goal of this project is to remain as **unopinionated** as possible. Its purpose is not to dictate your project structure or to demonstrate a complete sample application, but to provide a set of tools intended to make front-end development robust, easy, and, most importantly, fun. Check out the full feature list below!
+ - Windows or Linux builds now working
+ - Minimum node Version 6.9.0
+ - npm versions (3.10.8)
 
-Finally, This project wouldn't be possible without the help of our many contributors, so [thank you](#thank-you) for all of your help.
+[![Build Status](https://travis-ci.org/eddyystop/feathers-starter-react-redux-login-roles.svg?branch=master)](https://travis-ci.org/eddyystop/feathers-starter-react-redux-login-roles)
 
-## Table of Contents
-1. [Features](#features)
-1. [Requirements](#requirements)
-1. [Getting Started](#getting-started)
-1. [Application Structure](#application-structure)
-1. [Development](#development)
-  1. [Developer Tools](#developer-tools)
-  1. [Routing](#routing)
-1. [Testing](#testing)
-1. [Deployment](#deployment)
-1. [Build System](#build-system)
-  1. [Configuration](#configuration)
-  1. [Globals](#globals)
-  1. [Styles](#styles)
-  1. [Server](#server)
-  1. [Production Optimization](#production-optimization)
-1. [Learning Resources](#learning-resources)
-1. [FAQ](#troubleshooting)
-1. [Thank You](#thank-you)
+## <a name="features"></a> Features
 
-## Features
-* [react](https://github.com/facebook/react)
-* [redux](https://github.com/rackt/redux)
-* [react-router](https://github.com/rackt/react-router)
-* [webpack](https://github.com/webpack/webpack)
-* [babel](https://github.com/babel/babel)
-* [express](https://github.com/expressjs/express)
-* [karma](https://github.com/karma-runner/karma)
-* [eslint](http://eslint.org)
+- Designed as a foundation for building commercial applications used in production.
+- Local authentication including email verification, forgotten passwords, change email, password, etc.
+- Transactional email notifications.
+- User roles for authorization, including authorization of React routes.
+- UI for user authentication and authorization.
+- Feathers DB and custom services are dispatched to Redux for 100% compatibility.
+- Async server verification for the UI, as well as client-side verification.
+- Share UI verification code between client and server.
+- Hierarchical, dynamic app configuration for server and client.
+- Logging from both server and client.
 
-## Requirements
-* node `^4.5.0`
-* npm `^3.0.0`
+## <a name="serverContains"></a> Server contains
 
-## Getting Started
+- [x] [Feathersjs](https://github.com/feathersjs/feathers) with [Express](https://github.com/expressjs).
+- [x] [Feathers-rest](https://github.com/feathersjs/feathers-rest) to implement a REST API.
+- [x] [Feathers-socketio](https://github.com/feathersjs/feathers-socketio) for socket.io transport.
+- [x] [Feathers-service-verify-reset](https://github.com/eddyystop/feathers-service-verify-reset)
+adds email verification, forgotten password reset, etc. to local feathers-authentication.
+- [x] [Feathers-hooks-validate-joi](https://github.com/eddyystop/feathers-hooks-validate-joi)
+schema validation, sanitization and client notification using
+[Joi](https://github.com/hapijs/joi).
+- [x] [Dotenv](https://github.com/motdotla/dotenv) loads environment variables from `.env`. (1.8k stars)
+- [x] [Envalid](https://github.com/af/envalid) environment variable validation.
+- [x] [Node-config](https://github.com/lorenwest/node-config) node.js application configuration.
+(1.6k stars)
+- [x] [Winston](https://github.com/winstonjs/winston)
+a multi-transport async logging library for node.js. (6.1k stars)
+- [x] [Morgan](https://github.com/expressjs/morgan)
+HTTP request logger middleware for node.js. (1.7k stars)
+- [x] [Feathers-nedb](https://github.com/feathersjs/feathers-nedb).
+You can cleanly and easily [swap databases](http://docs.feathersjs.com/databases/readme.html).
 
-After confirming that your development environment meets the specified [requirements](#requirements), you can create a new project based on `react-redux-starter-kit` in one of two ways:
+You can swap to one or more of these databases with minor code changes:
+Amazon DynamoDB,
+Apache Cassandra,
+ArangoDB,
+Azure Table Storage,
+Google Sheets
+GraphQL,
+LevelDB,
+MariaDB,
+MondoDB,
+MySQL,
+NeDB,
+Neo4j,
+SQLite,
+Oracle,
+OrientDB,
+PostgrSQL,
+Redis,
+RethinkDB,
+Riak,
+SQL Server,
 
-### Install from source
+## <a name="ClientContains"></a> Client contains
 
-First, clone the project:
+- [x] [React](https://facebook.github.io/react/) & React-dom.
+- [x] [Redux](https://github.com/reactjs/redux).
+- [x] [Redux-auth-wrapper](https://github.com/mjrussell/redux-auth-wrapper)
+for Redux and React-Router permissions. (550 stars)
+- [x] [Redux-form](https://github.com/erikras/redux-form)
+to manage form state in Redux (version 6). (3.5k stars)
+- [x] [Redux DevTools Extension](https://github.com/zalmoxisus/redux-devtools-extension),
+like redux-devtools but perhaps better. (2k stars)
+- [x] [Material-ui](https://github.com/callemall/material-ui)
+implement Google's Material Design. (19k stars)
+- [x] [Feathers-client](https://github.com/feathersjs/feathers-client) using socket.io.
+- [x] [Feathers-reduxify-services](https://github.com/eddyystop/feathers-reduxify-services)
+wrap Feathers services so they work transparently and perfectly with Redux.
+- [x] [Feathers-reduxify-authentication](https://github.com/eddyystop/feathers-reduxify-authentication)
+wrap feathers-client.authentication so it works with Redux and React-Router.
 
-```bash
-$ git clone https://github.com/davezuko/react-redux-starter-kit.git <my-project-name>
-$ cd <my-project-name>
-```
+## <a name="clientBuildChain"></a> Client build chain contains
 
-Then install dependencies and check to see it works
+- [x] [Webpack](https://webpack.github.io)
+- [x] [Babel](https://babeljs.io/)
+- [x] [Postcss-modules](https://github.com/css-modules/postcss-modules)
+scope CSS names locally, and export a map for rendering React components.
+(css-modules 4.7k stars)
+- [x] [Autoprefixer](https://github.com/postcss/autoprefixer)
+add vendor prefixes. (10.7k stars)
+- [x] [Rucksack](https://github.com/simplaio/rucksack)
+a little bag of CSS superpowers, built on PostCSS. (1.5k stars)
+- [x] [Html-webpack-plugin](https://github.com/ampedandwired/html-webpack-plugin)
+simplifies creation of HTML files to serve your webpack bundles. (1.7k stars)
 
-```bash
-$ npm install                   # Install project dependencies
-$ npm start                     # Compile and launch
-```
-If everything works, you should see the following:
+## <a name="motivation"></a> Motivation
 
-<img src="http://i.imgur.com/zR7VRG6.png?2" />
+A complete, working project on which you can build your own Feathers, React, Redux app.
 
-While developing, you will probably rely mostly on `npm start`; however, there are additional scripts at your disposal:
+The project contains comprehensive local authentication and authorization including user roles.
 
-|`npm run <script>`|Description|
-|------------------|-----------|
-|`start`|Serves your app at `localhost:3000`. HMR will be enabled in development.|
-|`compile`|Compiles the application to disk (`~/dist` by default).|
-|`dev`|Same as `npm start`, but enables nodemon for the server as well.|
-|`test`|Runs unit tests with Karma and generates a coverage report.|
-|`test:dev`|Runs Karma and watches for changes to re-run tests; does not generate coverage reports.|
-|`deploy`|Runs linter, tests, and then, on success, compiles your application to disk.|
-|`deploy:dev`|Same as `deploy` but overrides `NODE_ENV` to "development".|
-|`deploy:prod`|Same as `deploy` but overrides `NODE_ENV` to "production".|
-|`lint`|Lint all `.js` files.|
-|`lint:fix`|Lint and fix all `.js` files. [Read more on this](http://eslint.org/docs/user-guide/command-line-interface.html#fix).|
+## <a name="running"></a> Running the starter package
 
-## Application Structure
+`npm install` from root.
 
-The application structure presented in this boilerplate is **fractal**, where functionality is grouped primarily by feature rather than file type. Please note, however, that this structure is only meant to serve as a guide, it is by no means prescriptive. That said, it aims to represent generally accepted guidelines and patterns for building scalable applications. If you wish to read more about this pattern, please check out this [awesome writeup](https://github.com/davezuko/react-redux-starter-kit/wiki/Fractal-Project-Structure) by [Justin Greenberg](https://github.com/justingreenberg).
+#### Linux flavors
 
-```
-.
-├── bin                      # Build/Start scripts
-├── build                    # All build-related configuration
-│   └── webpack              # Environment-specific configuration files for webpack
-├── config                   # Project configuration settings
-├── server                   # Express application that provides webpack middleware
-│   └── main.js              # Server application entry point
-├── src                      # Application source code
-│   ├── index.html           # Main HTML page container for app
-│   ├── main.js              # Application bootstrap and rendering
-│   ├── components           # Global Reusable Presentational Components
-│   ├── containers           # Global Reusable Container Components
-│   ├── layouts              # Components that dictate major page structure
-│   │   └── CoreLayout.js    # CoreLayout which receives children for each route
-│   │   └── CoreLayout.scss  # Styles related to the CoreLayout
-│   │   └── index.js         # Main file for layout
-│   ├── routes               # Main route definitions and async split points
-│   │   ├── index.js         # Bootstrap main application routes with store
-│   │   ├── Home             # Fractal route
-│   │   │   ├── index.js     # Route definitions and async split points
-│   │   │   ├── assets       # Assets required to render components
-│   │   │   ├── components   # Presentational React Components
-│   │   │   └── routes **    # Fractal sub-routes (** optional)
-│   │   └── Counter          # Fractal route
-│   │       ├── index.js     # Counter route definition
-│   │       ├── container    # Connect components to actions and store
-│   │       ├── modules      # Collections of reducers/constants/actions
-│   │       └── routes **    # Fractal sub-routes (** optional)
-│   ├── static               # Static assets (not imported anywhere in source code)
-│   ├── store                # Redux-specific pieces
-│   │   ├── createStore.js   # Create and instrument redux store
-│   │   └── reducers.js      # Reducer registry and injection
-│   └── styles               # Application-wide styles (generally settings)
-└── tests                    # Unit tests
-```
+With Webpack-dev-server:
+- `npm run build:devserver` on one process to start the webpack-dev-server on port 8080.
+- `npm run start:devserver` to start the server on port 3030.
+- Point browser to `localhost:3030` to start app.
 
-## Development
+Production build:
+- `npm run build`.
+- `npm start`.
+- Point browser to `localhost:3030` to start app.
 
-#### Developer Tools
+#### Windows
 
-**We recommend using the [Redux DevTools Chrome Extension](https://chrome.google.com/webstore/detail/redux-devtools/lmhkpmbekcpmknklioeibfkpmmfibljd).**
-Using the chrome extension allows your monitors to run on a separate thread and affords better performance and functionality. It comes with several of the most popular monitors, is easy to configure, filters actions, and doesn’t require installing any packages.
+Run the above commends using `win:build:...` and `win:start:...`.
 
-However, adding the DevTools components to your project is simple. First, grab the packages from npm:
+User authorization features accessible from icon menus on `/user/signin` and `/app`.
 
-```bash
-npm i --save-dev redux-devtools redux-devtools-log-monitor redux-devtools-dock-monitor
-```
+## <a name="faq"></a> [FAQ.](./doc/FAQ.md)
 
-Then follow the [manual integration walkthrough](https://github.com/gaearon/redux-devtools/blob/master/docs/Walkthrough.md).
+## <a name="customization"></a> [Customization of boilerplate.](./doc/CUSTOMIZATION.md)
 
-### Routing
-We use `react-router` [route definitions](https://github.com/reactjs/react-router/blob/master/docs/API.md#plainroute) (`<route>/index.js`) to define units of logic within our application. See the [application structure](#application-structure) section for more information.
+## <a name="processExitCodes"></a> [Process Exit Codes.](./doc/PROCESS_EXIT_CODES.md)
 
-## Testing
-To add a unit test, simply create a `.spec.js` file anywhere in `~/tests`. Karma will pick up on these files automatically, and Mocha and Chai will be available within your test without the need to import them. Coverage reports will be compiled to `~/coverage` by default. If you wish to change what reporters are used and where reports are compiled, you can do so by modifying `coverage_reporters` in `~/config/index.js`.
+## <a name="httpStatusCodes"></a> [HTTP Status Codes.](./doc/HTTP_STATUS_CODES.md)
 
-## Deployment
-Out of the box, this starter kit is deployable by serving the `~/dist` folder generated by `npm run deploy` (make sure to specify your target `NODE_ENV` as well). This project does not concern itself with the details of server-side rendering or API structure, since that demands an opinionated structure that makes it difficult to extend the starter kit. However, if you do need help with more advanced deployment strategies, here are a few tips:
+## <a name="contribution"></a> Contributing
 
-### Static Deployments
-If you are serving the application via a web server such as nginx, make sure to direct incoming routes to the root `~/dist/index.html` file and let react-router take care of the rest. If you are unsure of how to do this, you might find [this documentation](https://github.com/reactjs/react-router/blob/master/docs/guides/Histories.md#configuring-your-server) helpful. The Express server that comes with the starter kit is able to be extended to serve as an API or whatever else you need, but that's entirely up to you.
+[Contribute to this repo.](./doc/CONTRIBUTING.md)
 
-## Build System
+[Guide to ideomatic contributing.](https://github.com/jonschlinkert/idiomatic-contributing)
 
-### Configuration
+## <a name="changeLog"></a> Change Log
 
-Default project configuration can be found in `~/config/index.js`. Here you'll be able to redefine your `src` and `dist` directories, adjust compilation settings, tweak your vendor dependencies, and more. For the most part, you should be able to make changes in here **without ever having to touch the actual webpack build configuration**.
+[List of notable changes.](./doc/CHANGELOG.md)
 
-If you need environment-specific overrides (useful for dynamically setting API endpoints, for example), you can edit `~/config/environments.js` and define overrides on a per-NODE_ENV basis. There are examples for both `development` and `production`, so use those as guidelines. Here are some common configuration options:
+## <a name="license"></a> License
 
-|Key|Description|
-|---|-----------|
-|`dir_src`|application source code base path|
-|`dir_dist`|path to build compiled application to|
-|`server_host`|hostname for the Express server|
-|`server_port`|port for the Express server|
-|`compiler_devtool`|what type of source-maps to generate (set to `false`/`null` to disable)|
-|`compiler_vendor`|packages to separate into to the vendor bundle|
-
-Webpack is configured to make use of [resolve.root](http://webpack.github.io/docs/configuration.html#resolve-root), which lets you import local packages as if you were traversing from the root of your `~/src` directory. Here's an example:
-
-```js
-// current file: ~/src/views/some/nested/View.js
-// What used to be this:
-import SomeComponent from '../../../components/SomeComponent'
-
-// Can now be this:
-import SomeComponent from 'components/SomeComponent' // Hooray!
-```
-
-### Globals
-
-These are global variables available to you anywhere in your source code. If you wish to modify them, they can be found as the `globals` key in `~/config/index.js`. When adding new globals, make sure you also add them to `~/.eslintrc`.
-
-|Variable|Description|
-|---|---|
-|`process.env.NODE_ENV`|the active `NODE_ENV` when the build started|
-|`__DEV__`|True when `process.env.NODE_ENV` is `development`|
-|`__PROD__`|True when `process.env.NODE_ENV` is `production`|
-|`__TEST__`|True when `process.env.NODE_ENV` is `test`|
-
-### Styles
-
-Both `.scss` and `.css` file extensions are supported out of the box. After being imported, styles will be processed with [PostCSS](https://github.com/postcss/postcss) for minification and autoprefixing, and will be extracted to a `.css` file during production builds.
-
-### Server
-
-This starter kit comes packaged with an Express server. It's important to note that the sole purpose of this server is to provide `webpack-dev-middleware` and `webpack-hot-middleware` for hot module replacement. Using a custom Express app in place of [webpack-dev-server](https://github.com/webpack/webpack-dev-server) makes it easier to extend the starter kit to include functionality such as API's, universal rendering, and more -- all without bloating the base boilerplate.
-
-### Production Optimization
-
-Babel is configured to use [babel-plugin-transform-runtime](https://www.npmjs.com/package/babel-plugin-transform-runtime) so transforms aren't inlined. In production, webpack will extract styles to a `.css` file, minify your JavaScript, and perform additional optimizations such as module deduplication.
-
-## Learning Resources
-
-* [Starting out with react-redux-starter-kit](https://suspicious.website/2016/04/29/starting-out-with-react-redux-starter-kit/) is an introduction to the components used in this starter kit with a small example in the end.
-
-## FAQ
-
-Having trouble? Check out our [FAQ](https://github.com/davezuko/react-redux-starter-kit/wiki/FAQ:-Frequently-Asked-Questions) or submit an issue. Please be considerate by only posting issues that are directly related to this project; questions about how to implement certain React or Redux features are both best suited for StackOverflow or their respective repositories.
-
-## Thank You
-
-This project wouldn't be possible without help from the community, so I'd like to highlight some of its biggest contributors. Thank you all for your hard work, you've made my life a lot easier and taught me a lot in the process.
-
-* [Justin Greenberg](https://github.com/justingreenberg) - For all of your PR's, getting us to Babel 6, and constant work improving our patterns.
-* [Roman Pearah](https://github.com/neverfox) - For your bug reports, help in triaging issues, and PR contributions.
-* [Spencer Dixon](https://github.com/SpencerCDixon) - For your creation of [redux-cli](https://github.com/SpencerCDixon/redux-cli).
-* [Jonas Matser](https://github.com/mtsr) - For your help in triaging issues and unending support in our Gitter channel.
-
-And to everyone else who has contributed, even if you are not listed here your work is appreciated.
+MIT. See LICENSE.
